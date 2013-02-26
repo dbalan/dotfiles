@@ -31,25 +31,27 @@ import XMonad.Actions.CopyWindow
 
 baseConf = gnomeConfig
 
-ws_eclipse = "3:eclipse"
-ws_im = "8:pidgin"
+ws_eclipse = "4:eclipse"
+ws_im = "9:pidgin"
 
-myWorkspaces = ["1:emacs","2:terminal",ws_eclipse,"4:eclipse-2","5:firefox","6:chrome","7:mail",ws_im,"9:gitk","0:misc","-","="]
+myWorkspaces = ["1:terminal","2:browser","3:editor",ws_eclipse,"5:eclipse-2","6:gitk","7:graphics","8:mail",ws_im,"0:misc","-","="]
 isFullscreen = (== "fullscreen")
 
 -- myManageHook :: ManageHook
 myManageHook = composeAll
                  -- Don't tile GNOME Do
                [ resource  =? "Do"   --> doIgnore
-               , className =? "Emacs" --> doShift "1:emacs"
-               , resource  =? "gnome-terminal" --> doShift "2:terminal"
+               , className =? "Emacs" --> doShift "3:editor"
+               , resource  =? "gnome-terminal" --> doShift "1:terminal"
                , className =? "Eclipse" --> doShift ws_eclipse
-               , (className =? "Firefox" <||> className =? "Opera") --> doShift "5:firefox"
-               , (className =? "Google-chrome" <||> className =? "Chromium-browser") --> doShift "6:chrome"
-               , className =? "Thunderbird" --> doShift "7:mail"
+               , (className =? "Firefox" <||> className =? "Opera") --> doShift "2:browser"
+               , (className =? "Google-chrome" <||> className =? "Chromium-browser") --> doShift "2:browser"
+               , className =? "Thunderbird" --> doShift "8:mail"
                , className =? "Pidgin" --> doShift ws_im
                , className =? "Gitk" --> doShift "9:gitk"
                , className =? "Xmessage"  --> doFloat
+               , className =? "qemu" --> doFloat
+               , className =? "terminator" --> doShift "1:terminal"
                ]
 
  -- LAYOUTS
@@ -163,7 +165,7 @@ myKeys =
 
     -- mac-ish windows
   , (win "q", kill) -- kil the current app
-  
+  , ("C-S-q", spawn "gnome-session-quit")
     -- moving workspaces
   , ("C-S-<Left>", prevWS)
   , ("C-S-<Right>", nextWS)
@@ -175,7 +177,7 @@ main = do
   xmproc <- spawnPipe "/usr/bin/xmobar /home/dhananjay/.xmobarrc"  
 
   xmonad $ baseConf
-                           { terminal    = "gnome-terminal"
+                           { terminal    = "terminator"
                            , manageHook = manageHook baseConf <+> myManageHook
                            , modMask     = mod4Mask
                            , focusFollowsMouse = False
