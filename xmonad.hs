@@ -73,7 +73,14 @@ myLayoutHook =  avoidStruts $ eclipse $ pidgin $ normal
     eclipse = onWorkspace ws_eclipse Full
     pidgin = onWorkspace ws_im pidginLayout   
  
+-- Run xmobar
 
+myLogHook d = dynamicLogWithPP xmobarPP
+	{ ppOutput = hPutStrLn d  
+	,  ppTitle = xmobarColor "#2CE3FF" "" . shorten 50 
+	, ppLayout = const "" -- to disable the layout info on xmobar  
+        }  
+ 
 --main = do  
 --   xmproc <- spawnPipe "/usr/bin/xmobar /home/dhananjay/.xmobarrc"  
 
@@ -174,7 +181,7 @@ myKeys =
   ]
 main :: IO ()
 main = do 
-  xmproc <- spawnPipe "/usr/bin/xmobar /home/dhananjay/.xmobarrc"  
+  d <- spawnPipe $ "xmobar /home/dhananjay/.xmobarrc"  
 
   xmonad $ baseConf
                            { terminal    = "terminator"
@@ -183,6 +190,7 @@ main = do
                            , focusFollowsMouse = False
                            , workspaces = myWorkspaces
                            , layoutHook = myLayoutHook
+			   , logHook = myLogHook d
                            }
                            `additionalKeysP` myKeys
 
