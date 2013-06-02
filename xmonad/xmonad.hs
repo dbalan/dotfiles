@@ -39,7 +39,7 @@ myManageHook = composeAll
                [ resource  =?   "Synapse"   --> doIgnore
                , className =?   "Emacs"   --> doShift "3:editor"
                , resource  =?   "gnome-terminal"    --> doShift "1:terminal"
-               , className =? "terminator" --> doShift "1:terminal"
+               , className =? "Terminator" --> doShift "1:terminal"
                , className =?   "Eclipse" --> doShift "3:editor"
                , (className =?  "Firefox" <||> className =? "Opera") --> doShift "2:browser"
                , (className =?  "Google-chrome" <||> className =? "Chromium-browser") --> doShift "2:browser"
