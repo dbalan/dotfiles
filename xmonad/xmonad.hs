@@ -55,10 +55,20 @@ pidginLayout = withIM ratio roster chatLayout where
     chatLayout      = Grid ||| simpleTabbed
     ratio           = (1 % 6)
     roster          = (Role "buddy_list")
-myLayoutHook =  avoidStruts $ normal --eclipse $ pidgin $ normal
+myLayoutHook =  avoidStruts $ onWorkspace "2:browser" (tiled ||| Full) $ normal --pidgin $ normal
   where
-    normal = Full
-  --  eclipse = onWorkspace "3:editor" Full
+    normal = (tiled ||| Full)
+    --eclipse = onWorkspace "2:browser" (tiled ||| Full)
+    tiled       = Tall nmaster delta ratio
+
+    -- default number of windows in the master pane
+    nmaster     = 1
+
+    -- default proportion of screen occupied by master pane
+    ratio      = toRational (2/(1+sqrt(5)::Double))  -- golden ratio
+    -- Percent of screen to increment by when resizing panes
+    delta      = 0.05
+
   --  pidgin = onWorkspace "8:mail" pidginLayout
 
 -- Run xmobar
