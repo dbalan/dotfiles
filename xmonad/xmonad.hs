@@ -30,7 +30,7 @@ import XMonad.Actions.CopyWindow
 
 baseConf = gnomeConfig
 
-myWorkspaces = ["1:terminal","2:browser","3:editor","4:runtime","5:files","6:runtime","7:graphics","8:mail","9:misc","0:misc","-","="]
+myWorkspaces = ["1:terminal","2:browser","3:editor","4:runtime","5:files","6:runtime","7:graphics","8:im","9:misc","0:misc","-","="]
 isFullscreen = (== "fullscreen")
 
 myManageHook = composeAll
@@ -43,7 +43,7 @@ myManageHook = composeAll
                , (className =?  "Firefox" <||> className =? "Opera") --> doShift "2:browser"
                , (className =?  "Google-chrome" <||> className =? "Chromium-browser") --> doShift "2:browser"
                , className =? "Thunderbird" --> doShift "8:mail"
-               , className =? "Pidgin" --> doShift "8:mail"
+               , className =? "Pidgin" --> doShift "8:im"
                , className =? "Gitk" --> doShift "9:gitk"
                , className =? "Xmessage"  --> doFloat
                , className =? "qemu" --> doFloat
@@ -51,10 +51,7 @@ myManageHook = composeAll
                , className =? "Sublime Text 2" --> doShift "3:editor"
                ]
 
-pidginLayout = withIM ratio roster chatLayout where
-    chatLayout      = Grid ||| simpleTabbed
-    ratio           = (1 % 6)
-    roster          = (Role "buddy_list")
+
 myLayoutHook =  avoidStruts $ terminal $ runtime $ normal
   where
     terminal = onWorkspace "1:terminal" Full
@@ -62,15 +59,16 @@ myLayoutHook =  avoidStruts $ terminal $ runtime $ normal
     normal = (tiled ||| Full)
     tiled       = Tall nmaster delta ratio
     halftiled   = Tall nmaster delta halfratio
+
     -- default number of windows in the master pane
     nmaster     = 1
+
     -- default proportion of screen occupied by master pane
     ratio      = toRational (2/(1+sqrt(5)::Double))  -- golden ratio
     halfratio = 1/2
+
     -- Percent of screen to increment by when resizing panes
     delta      = 0.05
-
-  --  pidgin = onWorkspace "8:mail" pidginLayout
 
 -- Run xmobar
 
