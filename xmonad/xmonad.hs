@@ -1,4 +1,3 @@
-
 import XMonad
 import XMonad.Config.Azerty
 import XMonad.Hooks.DynamicLog
@@ -35,30 +34,32 @@ myWorkspaces = ["1:terminal","2:browser","3:editor","4:runtime","5:files","6:run
 isFullscreen = (== "fullscreen")
 
 myManageHook = composeAll
-                 -- Don't tile GNOME Do
-               [ resource  =? "Do"   --> doIgnore
-               , className =? "Emacs" --> doShift "3:editor"
-               , resource  =? "gnome-terminal" --> doShift "1:terminal"
-               , className =? "Eclipse" --> doShift "3:editor"
-               , (className =? "Firefox" <||> className =? "Opera") --> doShift "2:browser"
-               , (className =? "Google-chrome" <||> className =? "Chromium-browser") --> doShift "2:browser"
+
+               [ resource  =?   "Synapse"   --> doIgnore
+               , className =?   "Emacs"   --> doShift "3:editor"
+               , resource  =?   "gnome-terminal"    --> doShift "1:terminal"
+               , className =? "terminator" --> doShift "1:terminal"
+               , className =?   "Eclipse" --> doShift "3:editor"
+               , (className =?  "Firefox" <||> className =? "Opera") --> doShift "2:browser"
+               , (className =?  "Google-chrome" <||> className =? "Chromium-browser") --> doShift "2:browser"
                , className =? "Thunderbird" --> doShift "8:mail"
                , className =? "Pidgin" --> doShift "8:mail"
                , className =? "Gitk" --> doShift "9:gitk"
                , className =? "Xmessage"  --> doFloat
                , className =? "qemu" --> doFloat
-               , className =? "terminator" --> doShift "1:terminal"
+
+               , className =? "Sublime Text 2" --> doShift "3:editor"
                ]
 
 pidginLayout = withIM ratio roster chatLayout where
     chatLayout      = Grid ||| simpleTabbed
     ratio           = (1 % 6)
     roster          = (Role "buddy_list")
-myLayoutHook =  avoidStruts $ eclipse $ pidgin $ normal
+myLayoutHook =  avoidStruts $ normal --eclipse $ pidgin $ normal
   where
     normal = Full
-    eclipse = onWorkspace "3:editor" Full
-    pidgin = onWorkspace "8:mail" pidginLayout
+  --  eclipse = onWorkspace "3:editor" Full
+  --  pidgin = onWorkspace "8:mail" pidginLayout
 
 -- Run xmobar
 
@@ -80,8 +81,8 @@ myKeys =
   , (win "w", spawn "google-chrome")
   , (win "t", spawn "terminator")
   , (win "f", spawn "thunar")
-
-  , ("M-S-`", setLayout $ XMonad.layoutHook baseConf)
+  , (win "e", spawn "subl")
+  -- , ("M-S-`", setLayout $ XMonad.layoutHook baseConf)
 
   -- use classic "WIN"+TAB
   , (win "<Tab>", windows W.focusDown)
@@ -111,4 +112,3 @@ main = do
 			   , logHook = myLogHook d
                            }
                            `additionalKeysP` myKeys
-
