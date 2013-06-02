@@ -79,7 +79,7 @@ myLogHook d = dynamicLogWithPP xmobarPP
 	, ppLayout = const "" -- to disable the layout info on xmobar
         }
 
-trayerConfig = "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand false --width 70 --widthtype pixel --transparent true --tint 0x222222 --alpha 0 --height 17"
+trayerConfig = "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand false --width 70 --widthtype pixel --transparent true --tint 0x000000 --alpha 1 --height 17"
 
 xmobarConfig = "xmobar /home/dhananjay/.xmobarrc"
 

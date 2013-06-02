@@ -1,2 +1,2 @@
 TODO:
- - Move to dzen
+ (x) Move to dzen - aborted, happy with xmobar.
