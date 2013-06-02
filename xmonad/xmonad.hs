@@ -55,17 +55,18 @@ pidginLayout = withIM ratio roster chatLayout where
     chatLayout      = Grid ||| simpleTabbed
     ratio           = (1 % 6)
     roster          = (Role "buddy_list")
-myLayoutHook =  avoidStruts $ onWorkspace "2:browser" (tiled ||| Full) $ normal --pidgin $ normal
+myLayoutHook =  avoidStruts $ terminal $ runtime $ normal
   where
+    terminal = onWorkspace "1:terminal" Full
+    runtime = onWorkspace "4:runtime" (halftiled ||| Full)
     normal = (tiled ||| Full)
-    --eclipse = onWorkspace "2:browser" (tiled ||| Full)
     tiled       = Tall nmaster delta ratio
-
+    halftiled   = Tall nmaster delta halfratio
     -- default number of windows in the master pane
     nmaster     = 1
-
     -- default proportion of screen occupied by master pane
     ratio      = toRational (2/(1+sqrt(5)::Double))  -- golden ratio
+    halfratio = 1/2
     -- Percent of screen to increment by when resizing panes
     delta      = 0.05
 
