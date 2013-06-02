@@ -79,7 +79,9 @@ myLogHook d = dynamicLogWithPP xmobarPP
 	, ppLayout = const "" -- to disable the layout info on xmobar
         }
 
+trayerConfig = "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand false --width 70 --widthtype pixel --transparent true --tint 0x222222 --alpha 0 --height 17"
 
+xmobarConfig = "xmobar /home/dhananjay/.xmobarrc"
 
 alt key = "M1-" ++ key
 win key = "M-" ++ key
@@ -112,7 +114,8 @@ myKeys =
 
 main :: IO ()
 main = do
-  d <- spawnPipe $ "xmobar /home/dhananjay/.xmobarrc"
+  d <- spawnPipe xmobarConfig
+  trayer <- spawnPipe trayerConfig
 
   xmonad $ baseConf
                            { terminal    = "terminator"
