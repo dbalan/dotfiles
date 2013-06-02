@@ -19,6 +19,7 @@ import XMonad.Actions.CycleWS
 import XMonad.Config.Gnome
 import XMonad.Util.EZConfig
 import qualified XMonad.StackSet as W
+import XMonad.Actions.Promote
 
 import XMonad.Layout.IM
 import Data.Ratio ((%))
@@ -91,7 +92,6 @@ myKeys =
   , (win "t", spawn "terminator")
   , (win "f", spawn "thunar")
   , (win "e", spawn "subl")
-  -- , ("M-S-`", setLayout $ XMonad.layoutHook baseConf)
 
   -- use classic "WIN"+TAB
   , (win "<Tab>", windows W.focusDown)
@@ -100,6 +100,9 @@ myKeys =
   -- mac-ish windows
   , (win "q", kill) -- kil the current app
   , ("C-S-q", spawn "gnome-session-quit")
+
+  -- Promoting the master pane
+  , (win "p", promote)
   -- moving workspaces
   , ("C-S-<Left>", prevWS)
   , ("C-S-<Right>", nextWS)
