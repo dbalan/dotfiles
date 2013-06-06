@@ -49,9 +49,8 @@ myManageHook = composeAll
                , className =? "Gitk" --> doShift "9:gitk"
                , className =? "Xmessage"  --> doFloat
                , className =? "qemu" --> doFloat
-               , className =? "eadbeef" --> doShift "6:music"
                , className =? "Deadbeef" --> doShift "6:music"
-               , className =? "Sublime Text 2" --> doShift "3:editor"
+               , className =? "sublime_text" --> doShift "3:editor"
                ]
 
 
