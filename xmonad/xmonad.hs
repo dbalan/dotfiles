@@ -31,12 +31,13 @@ import XMonad.Actions.CopyWindow
 
 baseConf = gnomeConfig
 
-myWorkspaces = ["1:terminal","2:browser","3:editor","4:runtime","5:files","6:runtime","7:graphics","8:im","9:misc","0:misc","-","="]
+myWorkspaces = ["1:terminal","2:browser","3:editor","4:runtime","5:files","6:music","7:graphics","8:im","9:misc","0:misc","-","="]
 isFullscreen = (== "fullscreen")
 
 myManageHook = composeAll
 
                [ resource  =?   "Synapse"   --> doIgnore
+               , className =?   "Thunar"    --> doShift "5:files"
                , className =?   "Emacs"   --> doShift "3:editor"
                , resource  =?   "gnome-terminal"    --> doShift "1:terminal"
                , className =? "Terminator" --> doShift "1:terminal"
@@ -48,9 +49,12 @@ myManageHook = composeAll
                , className =? "Gitk" --> doShift "9:gitk"
                , className =? "Xmessage"  --> doFloat
                , className =? "qemu" --> doFloat
-
+               , className =? "eadbeef" --> doShift "6:music"
+               , className =? "Deadbeef" --> doShift "6:music"
                , className =? "Sublime Text 2" --> doShift "3:editor"
                ]
+
+
 
 
 myLayoutHook =  avoidStruts $ terminal $ runtime $ normal
@@ -94,6 +98,7 @@ myKeys =
   , (win "t", spawn "terminator")
   , (win "f", spawn "thunar")
   , (win "e", spawn "subl")
+  , (win "m", spawn "deadbeef")
 
   -- use classic "WIN"+TAB
   , (win "<Tab>", windows W.focusDown)
