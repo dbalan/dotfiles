@@ -155,7 +155,6 @@ ${voffset 10}${font Monaco:bold:size=9.5}${color4}SYSTEM ${color8} ${hr 2}
 ${voffset 4}${font openlogos:size=10}${color2}t${voffset -4}${font}${color6} ${sysname} ${kernel} ${alignr} ${machine}
 ${voffset 2}${font StyleBats:size=10}${color2}A${voffset -1}${font}${color6} Intel i3 ${alignr}${freq_g cpu0} GHz
 ${voffset 2}${font StyleBats:size=10}${color2}q${voffset -1}${font}${color6} Uptime ${alignr}${uptime}
-${voffset 2}${font StyleBats:size=10}${color2}o${voffset -1}${font}${color6} File System ${alignr}${fs_type}
 ##################
 ##  PROCESSORS  ##
 ##################
