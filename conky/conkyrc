@@ -177,8 +177,6 @@ ${voffset 2}${font StyleBats:size=10}${color2}x${voffset -2}${font}${color6} ROO
 ${color7}${fs_bar /}
 ${voffset 1}${font StyleBats:size=10}${color2}x${voffset -2}${font}${color6} HOME ${goto 95}${fs_used /home}/ ${fs_size /home}${alignr}${fs_free_perc /home}%
 ${color7}${fs_bar /home}
-${voffset 1}${font StyleBats:size=10}${color2}x${voffset -2}${font}${color6} Data ${goto 95}${fs_used /data}/ ${fs_size /data}${alignr}${fs_free_perc /data}%
-${color7}${fs_bar /data}
 ${voffset 1}${font StyleBats:size=10}${color2}4${voffset -2}${font}${color6} SWAP ${goto 95}${swap} / ${swapmax}${alignr}${swapperc}%
 ${color7}${swapbar}
 ##################
