@@ -75,7 +75,7 @@ alignment top_right
 ####
 ## Minimum size of text area.
 #
-minimum_size 235 5s0000
+minimum_size 235 5000
 
 ####
 ## Specify width and height for bars.
@@ -191,9 +191,9 @@ ${voffset 2}${font StyleBats:size=10}${color1}h${voffset -3}${font}${color6} ${t
 ##   NETWORK    ##
 ##################
 ${voffset 5}${font Arial:bold:size=9.5}${color4}NETWORK ${color8}${hr 2}
-${voffset 2}${font PizzaDude Bullets:size=10}${color2}a${font}${color6} Private IP${alignr}${addr eth0}
-${font PizzaDude Bullets:size=10}${color2}a${font}${color6} Public  IP${alignr}${execi 600 wget -q -O - checkip.dyndns.org | sed -e &#39;s/[^[:digit:]\|.]//g&#39;}
-${voffset 4}${font PizzaDude Bullets:size=10}${color2}T${font}${color6} Down${alignr}${downspeed eth0}
-${font PizzaDude Bullets:size=10}${color2}N${font}${color6} Up${alignr}${upspeed eth0}
-${voffset 4}${font PizzaDude Bullets:size=10}${color2}T${font}${color6} Downloaded${alignr}${totaldown eth0}
-${font PizzaDude Bullets:size=10}${color2}N${font}${color6} Uploaded${alignr}${totalup eth0}
+${voffset 2}${font PizzaDude Bullets:size=10}${color2}a${font}${color6} Netcfg Profile${alignr}${execi 600 netcfg current}
+${voffset 2}${font PizzaDude Bullets:size=10}${color2}a${font}${color6} Private IP${alignr}${execi 600 private_ip}
+${font PizzaDude Bullets:size=10}${color2}a${font}${color6} Public  IP${alignr}${execi 600 curl http://api.externalip.net/ip/}
+#${voffset 4}${font PizzaDude Bullets:size=10}${color2}T${font}${color6} Down${alignr}${downspeed eth0}
+#${font PizzaDude Bullets:size=10}${color2}N${font}${color6} Up${alignr}${upspeed eth0}
+${voffset 4}${font PizzaDude Bullets:size=10}${color2}T${font}${color6} WiFi Strength${alignr}${wireless_link_qual_perc wlan0}%
