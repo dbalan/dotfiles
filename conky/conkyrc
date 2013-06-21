@@ -75,7 +75,7 @@ alignment top_right
 ####
 ## Minimum size of text area.
 #
-minimum_size 235 0
+minimum_size 235 5s0000
 
 ####
 ## Specify width and height for bars.
@@ -148,10 +148,6 @@ color9 Black
 
 TEXT
 
-##################
-##     LOGO     ##
-##################
-${voffset -42}${font OpenLogos:size=80}${color2}B${voffset -66}${goto 178}${font UbuntuTitleBold:size=20}${color4}
 ##################
 ##    SYSTEM    ##
 ##################
