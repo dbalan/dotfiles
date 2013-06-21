@@ -58,7 +58,7 @@ myManageHook = composeAll
 
 myLayoutHook =  avoidStruts $ terminal $ runtime $ normal
   where
-    terminal = onWorkspace "1:terminal" Full
+    terminal = onWorkspace "1:terminal" (Full ||| tiled )
     runtime = onWorkspace "4:runtime" (halftiled ||| Full)
     normal = (tiled ||| Full)
     tiled       = Tall nmaster delta ratio
@@ -73,6 +73,29 @@ myLayoutHook =  avoidStruts $ terminal $ runtime $ normal
 
     -- Percent of screen to increment by when resizing panes
     delta      = 0.05
+
+-------------------------------------------------------------------------------
+-- Colors and borders
+-- Currently based on the ir_black theme.
+--
+myNormalBorderColor  = "#7c7c7c"
+myFocusedBorderColor = "#ffb6b0"
+--myFocusedBorderColor = "#729FCF"
+
+
+-- Colors for text and backgrounds of each tab when in "Tabbed" layout.
+tabConfig = defaultTheme {
+    activeBorderColor = "#7C7C7C",
+    activeTextColor = "#CEFFAC",
+    activeColor = "#000000",
+    inactiveBorderColor = "#7C7C7C",
+    inactiveTextColor = "#EEEEEE",
+    inactiveColor = "#000000"
+}
+
+-- Width of the window border in pixels.
+myBorderWidth = 1
+
 
 -- Run xmobar
 
