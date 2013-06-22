@@ -107,6 +107,8 @@ myLogHook d = dynamicLogWithPP xmobarPP
 
 trayerConfig = "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand false --width 70 --widthtype pixel --transparent true --tint 0x000000 --alpha 1 --height 17"
 
+conkyConfig = "conky -c ~/.conkyrc"
+
 xmobarConfig = "xmobar /home/dhananjay/.xmobarrc"
 
 alt key = "M1-" ++ key
@@ -143,6 +145,7 @@ main :: IO ()
 main = do
   d <- spawnPipe xmobarConfig
   trayer <- spawnPipe trayerConfig
+  conky <-spawnPipe conkyConfig
 
   xmonad $ baseConf
                            { terminal    = "terminator"
