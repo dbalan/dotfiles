@@ -1,0 +1,10 @@
+#!/bin/sh
+systemctl status mpd
+
+if [[ $? -eq 0 ]]; then
+	echo "Stoping MPD!"
+	sudo systemctl stop mpd
+else
+	echo "Starting MPD"
+	sudo systemctl start mpd
+fi

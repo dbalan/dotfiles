@@ -1,0 +1,8 @@
+#!/bin/bash
+# Prints a snippet from wikipedia
+if [[ $# -gt 0 ]]
+then
+exec dig +short txt ${1}.wp.dg.cx
+else
+echo Usage: ${0} keyword
+fi

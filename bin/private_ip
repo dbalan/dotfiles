@@ -1,0 +1,5 @@
+#!/bin/sh
+DEV=$(grep INTERFACE /etc/network.d/$(netcfg current) | sed "s/INTERFACE='//"|sed "s/'//")
+
+ifconfig $DEV|grep inet|head -n 1|awk '{print $2}'
+
