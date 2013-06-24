@@ -20,7 +20,7 @@ import XMonad.Config.Gnome
 import XMonad.Util.EZConfig
 import qualified XMonad.StackSet as W
 import XMonad.Actions.Promote
-
+import XMonad.Layout.Reflect
 import XMonad.Layout.IM
 import Data.Ratio ((%))
 import XMonad.Layout.Grid
@@ -51,15 +51,17 @@ myManageHook = composeAll
                , className =? "qemu" --> doFloat
                , className =? "Deadbeef" --> doShift "6:music"
                , className =? "sublime_text" --> doShift "3:editor"
+               , className =? "Empathy" --> doShift "8:im"
                ]
 
 
 
 
-myLayoutHook =  avoidStruts $ terminal $ runtime $ normal
+myLayoutHook =  avoidStruts $ terminal $ runtime $ im $ normal
   where
     terminal = onWorkspace "1:terminal" (Full ||| tiled )
     runtime = onWorkspace "4:runtime" (halftiled ||| Full)
+    im = onWorkspace "8:im" (tiled ||| Full ||| myChat)
     normal = (tiled ||| Full)
     tiled       = Tall nmaster delta ratio
     halftiled   = Tall nmaster delta halfratio
@@ -73,6 +75,13 @@ myLayoutHook =  avoidStruts $ terminal $ runtime $ normal
 
     -- Percent of screen to increment by when resizing panes
     delta      = 0.05
+
+    myChat' l = reflectHoriz $ withIM size roster $ reflectHoriz $ l
+    size = 1%5
+    roster =  Title "Contact List"
+    myChat = myChat' Grid
+
+
 
 -------------------------------------------------------------------------------
 -- Colors and borders
