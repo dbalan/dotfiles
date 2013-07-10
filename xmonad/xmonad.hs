@@ -50,7 +50,7 @@ myManageHook = composeAll
                , className =? "Xmessage"  --> doFloat
                , className =? "qemu" --> doFloat
                , className =? "Deadbeef" --> doShift "6:music"
-               , className =? "sublime_text" --> doShift "3:editor"
+               , className =? "Subl3" --> doShift "3:editor"
                , className =? "Empathy" --> doShift "8:im"
                ]
 
@@ -130,7 +130,7 @@ myKeys =
   , (win "w", spawn "google-chrome")
   , (win "t", spawn "terminator")
   , (win "f", spawn "thunar")
-  , (win "e", spawn "subl")
+  , (win "e", spawn "subl3")
   , (win "m", spawn "deadbeef")
 
   -- use classic "WIN"+TAB
