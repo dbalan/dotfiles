@@ -3,6 +3,8 @@
   focus = system
   borderless = True
 [keybindings]
+  copy = <Super>c
+  paste = <Super>v
 [profiles]
   [[default]]
     scrollbar_position = hidden
