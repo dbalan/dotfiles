@@ -38,7 +38,7 @@ myManageHook = composeAll
 
                [ resource  =?   "Synapse"   --> doIgnore
                , className =?   "Thunar"    --> doShift "5:files"
-               , className =?   "Emacs"   --> doShift "3:editor"
+               -- , className =?   "Emacs"   --> doShift "3:editor"
                , resource  =?   "gnome-terminal"    --> doShift "1:terminal"
                , className =? "Terminator" --> doShift "1:terminal"
                , className =?   "Eclipse" --> doShift "3:editor"
@@ -114,7 +114,7 @@ myLogHook d = dynamicLogWithPP xmobarPP
 	, ppLayout = const "" -- to disable the layout info on xmobar
         }
 
-trayerConfig = "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand false --width 70 --widthtype pixel --transparent true --tint 0x000000 --alpha 1 --height 17"
+trayerConfig = "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand false --width 70 --widthtype pixel --transparent true --tint 0x000000 --alpha 1 --height 18"
 
 conkyConfig = "conky -c ~/.conkyrc"
 
